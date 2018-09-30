@@ -4,6 +4,7 @@ numericalization = function(snp,allie){
   # browser()
  # print("allie")
  # print(allie)
+ master changes
   alliesplited = unlist(strsplit(allie, split="/"))
   print(alliesplited[1])
   print(alliesplited[2])
