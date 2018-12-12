@@ -1,7 +1,4 @@
-
 <p  align="center"><img src="screenshots/logo.jpg"/></p>
- 
-
 
 <p><strong><em>MaxPedigree</em></strong><strong> v2.0</strong> is a web-based analytics and visualization tool for soybean plant breeders. It empowers plant breeders with a fast, reliable, and secure one-stop platform for their multiple analysis and visualization needs. Core functionalities include pedigree visualization, principal component analysis (PCA) of SNP data, SNP/cultivar data validation, Storage/retrieval of SNP data, colorful traits visualization of data and hierarchical clustering. It also provides an interactive search to easily access the pedigree and traits of existing and historical cultivars/breeding lines for both parental and progeny selection. All the information is stored in a secured RDBMS database. Although MaxPedigree is developed for Soybean plant, once established, could also be applied to other crops such as maize, cotton, peanut, and wheat.</p>
 <p align="center"><strong><em>System Architecture</em></strong></p>
