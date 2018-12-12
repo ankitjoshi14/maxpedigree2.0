@@ -1,10 +1,11 @@
-# maxpedigree2.0
+
+<p  align="center"><img src="screenshots/logo.jpg"/></p>
 <p>Today scientific research in every field is becoming more and more dependent on data analysis. Traditional approaches to data analysis consume lots of valuable research time. Some free software available in the market for data visualization and statistical analysis does fulfill the purpose of data analysis, but either they are not interactive or need special programming knowledge to perform data analysis. Also, a research often includes multiple kinds of statistical data analysis and visualization. To fulfill this need they eventually end up using multiple software and each different software has their own convention of data representation. It leads to extra work of maintaining the same data in different formats. To fulfill this gap and save research time for plant breeders, we have developed an application called as <strong><em>MaxPedigree</em></strong><strong> v2.0</strong>.</p>
-![images](screenshots/test.gif)
+
 
 <p><strong><em><sup>&nbsp;</sup></em></strong>MaxPedigree is a web-based statistical analysis and visualization tool for soybean plant breeders. It empowers plant breeders with a fast, reliable, and secure one-stop platform for their multiple analysis and visualization needs. Core functionalities include pedigree visualization, principal component analysis (PCA) of SNP data, SNP/cultivar data validation, Storage/retrieval of SNP data, colorful traits visualization of data and hierarchical clustering. It also provides an interactive search to easily access the pedigree and traits of existing and historical cultivars/breeding lines for both parental and progeny selection. All the information is stored in a secured RDBMS database. Although MaxPedigree is developed for Soybean plant, once established, could also be applied to other crops such as maize, cotton, peanut, and wheat.</p>
 
-<p style="text-align: center;"><strong><span style="font-size: 16.0pt; line-height: 107%;">Features &amp; User Guide</span></strong></p>
+<p align="center">## Features &amp; User Guide</p>
 <p>MaxPedigree bundles multiple features in one platform. Data analysis and visualization are at its core. Besides those, there are some addon features. Below is the comprehensive list of all the features with details and usage.</p>
 <p><u>Data Selection Tab:</u></p>
 <p>This feature let the user lookup Cultivar database using the interactive search bar in a nice and easy to navigate tabular format. Pagination is also provided to let the user browse through hundreds of records with no Hassle. To refine the search, the user can make use of the search bar. Each data row is provided with a checkbox to let the user select the cultivar for data analysis.</p>
@@ -22,7 +23,9 @@
 <p>This feature let user color nodes in PCA and edges in the pedigree tree based on the selected attribute. This feature helps the user to color trace selected attribute in the pedigree tree and gives extra information about nodes.</p>
 <p>To color, select desired attribute from attribute box at the right bottom of the screen.</p>
 <p><u>Pedigree Tree:</u></p>
-<p>This feature will help the user to visualize the ancestry tree of a cultivar. Tree edges can be colored based on selected trait from attribute box. To use this feature, follow the below steps:</p>
+<p>This feature will help the user to visualize the ancestry tree of a cultivar. Tree edges can be colored based on selected trait from attribute box.</p>
+<img src="screenshots/pedigree.gif"/>
+<p> To use this feature, follow the below steps:</p>
 <ul>
 <li>open data tab from the top navigation bar.</li>
 <li>Search for Cultivar using the search bar or simply scroll through data table.</li>
