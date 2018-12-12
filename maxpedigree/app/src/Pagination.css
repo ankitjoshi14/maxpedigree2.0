@@ -1,0 +1,13 @@
+.customPagination{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.paginationDiv{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+
+}

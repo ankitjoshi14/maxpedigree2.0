@@ -1,0 +1,13 @@
+.InfoBox{
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    height:50% ; 
+    width:100% ;   
+    border-radius: 15px ;
+}
+
+
+.list{
+    list-style: none
+  }

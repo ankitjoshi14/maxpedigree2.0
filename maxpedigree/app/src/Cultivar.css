@@ -1,0 +1,28 @@
+
+
+
+.fixed-header{
+    overflow: auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.fixed_header tbody{
+    display:block;
+    overflow: auto;
+    
+  }
+
+  .fixed_header thead tr {
+    display: block;
+ }
+
+#tablebodyDiv{
+    overflow-y: scroll ;
+    border: 1px solid rgb(211, 203, 203);
+}
+
+.headerTable{
+    margin-bottom: 10px;
+}
+ 

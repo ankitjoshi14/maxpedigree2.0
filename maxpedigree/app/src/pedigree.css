@@ -1,0 +1,71 @@
+.vizSection{
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    height:100%; width:80%;
+    display: inline-block; 
+    border-radius: 15px
+  }
+  
+  .infoSection{
+    font-size: 16px;padding-left: 20px;  height:98% ; width:20% ; display: inline-block ; vertical-align:top;
+  }
+
+  .node circle {
+    fill: rgb(218, 34, 34);
+    stroke: steelblue;
+    stroke-width: 3px;
+  }
+  
+  .nodee text {
+    font: 40px sans-serif;
+  }
+  
+  .linkdrgk {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+  }
+  
+   
+  
+   
+  
+  .popupBox {
+         font-size: 17px ;
+         border :solid;
+         border-color : #ff000080;
+         border-radius: 5px;
+         border-width: 2px;
+         padding-left: 2px;
+         padding-right: 2px;
+          
+  
+         background: white;
+  }
+  
+  .popupBox:hover{
+       border-color: #ff0000e6;
+        
+       cursor:pointer;
+        
+        
+  }
+  
+  .node:hover {
+        stroke-width: 6px;
+        ;
+  }
+  
+  g:hover > .node{
+       stroke-width: 6px;
+         
+  }
+  
+  
+  .node:hover .popupBox{
+    border-color: #ff0000e6;
+       
+       
+  }
+  

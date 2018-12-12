@@ -1,0 +1,22 @@
+.AttributeBox{
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    border-radius: 15px ;
+}
+
+h2{
+    border-bottom-style: solid;
+    border-radius: 15px 15px 0px 0px;
+    text-align : center;
+    margin: 0px 0px 0px 0px; 
+    padding: 4px 4px 4px 4px; 
+    background-color: #337ab7; 
+    color: white;
+    
+}
+
+#attributes{
+    overflow-y: scroll;
+    height : 200px ;
+}

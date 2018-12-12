@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.password">admin</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/MaxPedigree</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="use_sql_comments">true</property>
+		<mapping class="restapi.model.Snp" />
+		<mapping class="restapi.model.Markerinfo" />
+		<mapping class="restapi.model.Cultivar" />
+		<mapping class="restapi.model.Country" />
+		<mapping class="restapi.model.FlowerColor" />
+		<mapping class="restapi.model.HilumColor" />
+		<mapping class="restapi.model.MaturityGroup" />
+		<mapping class="restapi.model.PodColor" />
+		<mapping class="restapi.model.PubescenceColor" />
+		<mapping class="restapi.model.PubescenceDensity" />
+		<mapping class="restapi.model.PubescenceForm" />
+		<mapping class="restapi.model.SeedcoatColor" />
+		<mapping class="restapi.model.SeedcoatLuster" />
+		<mapping class="restapi.model.StemTermination" />
+		<mapping class="restapi.model.Subcollection" />
+	</session-factory>
+</hibernate-configuration>

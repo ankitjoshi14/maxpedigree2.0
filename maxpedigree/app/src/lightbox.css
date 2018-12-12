@@ -1,0 +1,39 @@
+.overlay {
+    /* Cosmettics only */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5); /*dim the background*/
+  }
+
+  .uploadform{
+    margin: 10px 10px 10px 10px;
+}
+
+
+  textarea { 
+    resize:none;
+   align-self: center 
+  }
+
+  /* just some content with arbitrary styles for explanation purposes */
+.moddal {
+    width: 350px;
+    height: 450px;
+    position: absolute;
+    top: 20%; 
+    left: 50%;
+    margin-top: -100px;
+    margin-left: -150px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    text-align: left;
+    z-index: 20; 
+    -moz-box-shadow: 0 0 5px #888;
+    -webkit-box-shadow: 0 0 5px#888;
+    box-shadow: 0 0 5px #888;
+    border-radius: 15px ;/* 1px higher than the overlay layer */
+}
