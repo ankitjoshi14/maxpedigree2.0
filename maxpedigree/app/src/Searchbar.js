@@ -88,7 +88,7 @@ class Searchbar extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         // only update chart if the data has changed
         if (prevProps.selectedCultivars !== this.props.selectedCultivars) {
-            if (this.props.selectedCultivars.length > 12) {
+            if (this.props.selectedCultivars.length > 1000) {
                 alert("too many records");
                 this.setState((state, props) => {
                     return { showSelectFilteredButton: true }

@@ -9,6 +9,7 @@
 <p>MaxPedigree bundles multiple features in one platform. Data analysis and visualization are at its core. Besides those, there are some addon features. Below is the comprehensive list of all the features with details and usage.</p>
 <p><u>Data Selection Tab:</u></p>
 <p>This feature let the user lookup Cultivar database using the interactive search bar in a nice and easy to navigate tabular format. Pagination is also provided to let the user browse through hundreds of records with no Hassle. To refine the search, the user can make use of the search bar. Each data row is provided with a checkbox to let the user select the cultivar for data analysis.</p>
+<img src="screenshots/searchbar.gif"/>
 <p><u>Search Bar:</u></p>
 <p>Cultivar data can have thousands of records. The user can take help of search bar to refine the search results. MaxPedigree provides four search criteria for this purpose.</p>
 <p>Valid input values for each criterion.</p>
@@ -35,6 +36,9 @@
 <p>&nbsp;</p>
 <p><u>Pincipal Component analysis (PCA):</u></p>
 <p>This feature will let the user do a principal component analysis of selected cultivars. The nodes can be colored based on the selected attribute. There is also an add-on feature for highlighting selected cultivar. The user can toggle the size of a node by clicking on it. This feature let user highlight specific node. To check out the details of each node, the user can hover over that node. The user can also zoom in, zoom out and drag the generated datapoints.</p>
+<img src="screenshots/pca.gif"/>
+<p>Zooming and Dragging feature</p>
+<img src="screenshots/pcazoom.gif"/>
 <p>To perform PCA, follow below steps:</p>
 <ul>
 <li>Open data tab from the navigation</li>
@@ -47,7 +51,9 @@
 </ul>
 <p>NOTE- Cultivars with no SNP information in the database will be ignored while performing PCA.</p>
 <p><u>Hierarchical Clustering:</u></p>
-<p>This feature will let user generate Hierarchical Cluster for selected cultivars. This follows the same procedure same PCA. The user can zoom in, zoom out and drag the Hierarchical Cluster. To perform Hierarchical Clustering, follow below steps:</p>
+<p>This feature will let user generate Hierarchical Cluster for selected cultivars. This follows the same procedure same PCA. The user can zoom in, zoom out and drag the Hierarchical Cluster. </p>
+<img src="screenshots/hcluster.gif"/>
+<p>To perform Hierarchical Clustering, follow below steps:</p>
 <ul>
 <li>Open data tab from the navigation</li>
 <li>A selected cultivar from Data table for which you want to perform PCA.</li>
@@ -58,7 +64,9 @@
 <p>NOTE- Cultivars with no SNP information in the database will be ignored.</p>
 <p>&nbsp;</p>
 <p><u>SNP and physical information Validation:</u></p>
-<p>MaxPedigree let user validate SNP and physical information. The user can validate up to 100 cultivars in a single upload. MaxPedigree accepts CSV format only. It also displays validation response message to let user correct incorrect information and reupload again. MaxPedigree can also validate a cultivar with missing SNPs. The user can also upload incomplete SNP information. For instance, sometimes a specific cultivar does not have SNP information for all 40,000 SNPs. A cultivar with lesser SNPs (&lt; 40,000) will also be validated. Uploaded SNPs can follow any sequence. To validate SNP or physical information, follow below steps:</p>
+<p>MaxPedigree let user validate SNP and physical information. The user can validate up to 100 cultivars in a single upload. MaxPedigree accepts CSV format only. It also displays validation response message to let user correct incorrect information and reupload again. MaxPedigree can also validate a cultivar with missing SNPs. The user can also upload incomplete SNP information. For instance, sometimes a specific cultivar does not have SNP information for all 40,000 SNPs. A cultivar with lesser SNPs (&lt; 40,000) will also be validated. Uploaded SNPs can follow any sequence. </p>
+<img src="screenshots/validation.gif"/>
+<p>To validate SNP or physical information, follow below steps:</p>
 <ul>
 <li>Go to the Data tab and click on import data button given in the search</li>
 <li>Select a file to upload. A file can contain up to 100 cultivars information</li>
@@ -70,9 +78,12 @@
 <p><u>Data Import:</u></p>
 <p>This feature follows the same procedure as Validation. MaxPedigree uploads data only if the information is correct for all the cultivars. For instance, If a user uploaded an SNP information file having 50 cultivars. Data will be persisted in the database only if all the 50 cultivars are validated successfully. Even if 49 cultivars are correct but 50<sup>th</sup> cultivar is uploaded with incorrect values, MaxPedigree will reject upload for all Cultivars.</p>
 <p>NOTE - One Important feature of Data Export for Cultivar Data is that it updates the data rows having Cultivar Id and create new ID (starting with &ldquo;Z00000&rdquo;) if Cultivar ID is empty.</p>
+<img src="screenshots/validation.gif"/>
 <p>&nbsp;</p>
 <p><u>Data Export:</u></p>
-<p>This feature let user export the cultivar physical or SNP information in CSV format. The export feature can export up to 100 cultivar information. To export data, follow below steps:</p>
+<p>This feature let user export the cultivar physical or SNP information in CSV format. The export feature can export up to 100 cultivar information.</p>
+<img src="screenshots/export.gif"/>
+<p> To export data, follow below steps:</p>
 <ul>
 <li>Go to the data tab and select cultivars from the table.</li>
 <li>Click on export data. It will open a popup window.</li>

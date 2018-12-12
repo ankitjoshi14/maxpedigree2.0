@@ -56,13 +56,10 @@ class FileDowndloader extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({ value: event.target.value });
-    }
-
-    handleChange(event) {
-        this.setState({ value: event.target.value });
-        console.log("textbox values", event.target.value)
-        let k = event.target.value.split("\n");
+        let inputValue = event.target.value;
+        this.setState({ value: inputValue });
+        console.log("textbox values", inputValue)
+        let k = inputValue.split("\n");
         // k.splice(k.length-1 , k.length);
         console.log(k[k.length - 1]);
     }
