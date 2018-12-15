@@ -35,7 +35,7 @@
 <li>To color trace a trait, select it from attribute selection box.</li>
 </ul>
 <p>&nbsp;</p>
-<p><u>Pincipal Component analysis (PCA):</u></p>
+<p><u>Principal Component analysis (PCA):</u></p>
 <p>This feature will let the user do a principal component analysis of selected cultivars. The nodes can be colored based on the selected attribute. There is also an add-on feature for highlighting selected cultivar. The user can toggle the size of a node by clicking on it. This feature let user highlight specific node. To check out the details of each node, the user can hover over that node. The user can also zoom in, zoom out and drag the generated datapoints.</p>
 <img src="screenshots/pca.gif"/>
 <p>Zooming and Dragging feature</p>
