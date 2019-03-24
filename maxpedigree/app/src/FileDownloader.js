@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { downloadFile } from "./pedigreeaction";
-import "./FileDownloader.css";
-
+import styles from "./FileDownloader.css";
+import cx from 'classnames';
+import { COPYFILE_EXCL } from 'constants';
 
 
 class FileDowndloader extends React.Component {
@@ -93,21 +94,21 @@ class FileDowndloader extends React.Component {
 
             <div>
 
-                <button type="button" className="btn btn-primary Left searchbarbutton" onClick={this.show} >Export Data</button>
-                <div className={this.state.show ? 'overlayer' : 'hidden  overlayer'} ></div>
-                <div className={this.state.show ? 'modalloader' : 'hidden modalloader'}>
-                    <h2>Export</h2>
+                <button type="button" className={cx("btn","btn-outline-primary", styles.searchbarbutton)} onClick={this.show} >Export Data</button>
+                <div className={this.state.show ? styles.overlayer : cx(styles.hidden , styles.overlayer)} ></div>
+                <div className={this.state.show ? styles.modalloader : cx( styles.hidden , styles.modalloader)}>
+                    <h3>Export</h3>
                     <div>
-                        <form className="uploadform">
-                            <div className="form-row">
+                        <form className={styles.uploadform}>
+                            <div className= "form-row">
                                 <div className="form-group">
-                                    <label for="comment">Selected Cultivars:</label>
-                                    <textarea className="form-control" rows="10" id="comment" onChange={this.handleChange} value={this.state.value} ></textarea>
+                                    <label htmlFor="comment">Selected Cultivars:</label>
+                                    <textarea className={cx("form-control", styles.textarea)} rows="10" id="comment" onChange={this.handleChange} value={this.state.value} ></textarea>
                                 </div>
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-12">
-                                <button type="button" className="btn btn-info btn-block" onClick={(e) => this.onsubmit(e, "cultivars")} >Download Cultivars</button>
+                                <button type="button" className= "btn btn-info btn-block"  onClick={(e) => this.onsubmit(e, "cultivars")} >Download Cultivars</button>
                                   
                                 </div>
                                 <div className="form-group col-md-12">
@@ -116,13 +117,13 @@ class FileDowndloader extends React.Component {
                             </div>
                             
                             <div className="form-row">
-                                <div className="form-group col-md-6" >
-                                    <button type="button" className="btn btn-primary btn-block" onClick={() => this.refresh()}>
-                                        <span className="glyphicon glyphicon-refresh"></span> Refresh</button>
+                                <div className="form-group col-md-6">
+                                    <button type="button" className= "btn btn-primary btn-block" onClick={() => this.refresh()}>
+                                        <span className= "glyphicon glyphicon-refresh"></span> Refresh</button>
 
                                 </div>
-                                <div className=" form-group col-md-6" >
-                                <button type="button" className="btn btn-danger btn-block" onClick={this.cancel}>cancel</button>
+                                <div className= "form-group col-md-6">
+                                <button type="button" className= "btn btn-danger btn-block" onClick={this.cancel}>cancel</button>
                                 </div>
                             </div>
 

@@ -3,6 +3,9 @@
     margin-top: 25px
 }
 
+.hidden{
+    display: none;
+}
 .overlayer {
     /* Cosmettics only */
     position: fixed;
@@ -18,15 +21,15 @@
     margin: 10px 10px 10px 10px;
 }
 
-  textarea {
+.textarea {
        resize:none;
-
-       align-self: center }
+       align-self: center 
+    }
 
   /* just some content with arbitrary styles for explanation purposes */
 .modalloader {
     width: 400px;
-    height: 450px;
+    height: 510px;
     position: fixed;
     top: 20%; 
     left: 50%;

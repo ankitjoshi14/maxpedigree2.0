@@ -1,13 +1,13 @@
 
 import React from 'react';
-import round from "math-round";
 import { getpedigreedata, pedigree } from "./pedigreeaction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import "./Cultivar.css";
 import Checkbox from "./checkbox";
 import Pagination from "./Pagination";
 import Searchbar from './Searchbar';
+import styles from "./Cultivar.css";
+import cx from 'classnames';
 
 
 class Cultivar extends React.Component {
@@ -104,8 +104,8 @@ class Cultivar extends React.Component {
             
             <div>
                 <Searchbar dim={dim.searchbar} />
-                    <div id="tablebodyDiv" style={dim.table}>
-                        <table className=" table table-hover ">
+                    <div className={styles.tablebodydiv} style={dim.table}>
+                        <table className="table table-hover">
                         <thead id="tableHeader">
                             <tr>
                                 <th>      </th>
@@ -126,7 +126,7 @@ class Cultivar extends React.Component {
                             <tbody id="tableBody">
                                 {this.props.pageOfItems === null ? "" :this.props.pageOfItems.map((item, index) =>
                                     <tr key={item.cultivarId} ><td><Checkbox id={item.cultivarId} /></td>
-                                        <td><button type="button" className="btn btn-primary" onClick={(e) => this.showPedigree(item.cultivarId)}>show pedigree</button></td>
+                                        <td><button type="button" className="btn btn-outline-primary" onClick={(e) => this.showPedigree(item.cultivarId)}>show pedigree</button></td>
                                         <td>{item.cultivarId}</td>
                                         <td>{item.cultivarName}</td>
                                         <td>{item.maturityGroup != null ? item.maturityGroup.value : ""}</td>

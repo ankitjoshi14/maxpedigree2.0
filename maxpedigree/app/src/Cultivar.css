@@ -17,7 +17,7 @@
     display: block;
  }
 
-#tablebodyDiv{
+.tablebodydiv{
     overflow-y: scroll ;
     border: 1px solid rgb(211, 203, 203);
 }

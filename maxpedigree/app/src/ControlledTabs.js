@@ -1,16 +1,14 @@
 import React from 'react';
-import './ControlledTabs.css';
-//import HCluster from './HCluster';
+import styles from './ControlledTabs.css';
 import Pedigree from './Pedigree';
 import Pca from './pca';
 import Cultivar from './Cultivar';
 import HCluster from './HCluster';
-import Pagination from "./Pagination";
 import Lightbox from "./lightbox";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showLightbox, downloadFile } from "./pedigreeaction";
-import FileUploader from './FileUploader';
+import cx from 'classnames';
 
 
 class ControlledTabs extends React.Component {
@@ -20,8 +18,8 @@ class ControlledTabs extends React.Component {
     //  console.log("controlled tab height", window.innerHeight)
     this.state = {
       tabdim: {
-        width: window.innerWidth,
-        height: window.innerHeight - 60
+        width: window.innerWidth-5, // need to figure out why -5 is needed to fit screen size
+        height: window.innerHeight - 55
       },
       controlledTabdim: {
         width: window.innerWidth,
@@ -105,49 +103,36 @@ class ControlledTabs extends React.Component {
   render() {
     console.log("render controltabs");
     return (
-      <div className="controlledtab" style={this.state.controlledTabdim}>
-
-        <div className="Tab" style={this.state.navBardim}>
-        
- 
-          <ul class="nav navbar-nav">
-            <li role="presention" className="tablinks" id="dataTab" onClick={(e) => this.openTab('data')}><a>Home</a></li>
-            <li role="presentation" className="tablinks" id ="pedigreeTab" onClick={(e) => this.openTab('pedigree')}><a >Pedigree</a></li>
-            <li role="presentation"  className="tablinks" id="pcaTab" onClick={(e) => this.openTab('pca')}><a  >Principal Components</a></li>
-            <li role="presentation" className="tablinks" id="hcTab" onClick={(e) => this.openTab('hc')}><a >Hierarchical Cluster</a></li>
+      <div className={styles.controlledtab} style={this.state.controlledTabdim}>
+      <div className={styles.Tab} style={this.state.navBardim}>
+        <nav className= "navbar navbar-dark navbar-expand-sm bg-dark" role = "navigation">
+          <ul className = {cx("nav", "navbar-nav", "navbar-left", styles.navCustom)} >
+          <li role="presention" className="tablinks active nav-item" id="dataTab" onClick={(e) => this.openTab('data')}><a class="nav-link">Home</a></li>
+          <li role="presentation" className="tablinks nav-item" id ="pedigreeTab" onClick={(e) => this.openTab('pedigree')}><a class="nav-link">Pedigree</a></li>
+          <li role="presentation"  className="tablinks nav-item" id="pcaTab" onClick={(e) => this.openTab('pca')}><a  class="nav-link">Principal Components</a></li>
+          <li role="presentation" className="tablinks nav-item"  id="hcTab" onClick={(e) => this.openTab('hc')}><a class="nav-link">Hierarchical Cluster</a></li>
           </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <div className="form-group col-md-10">
-              <button type="button" onClick={() => this.props.showLightbox(true)} class="btn btn-danger btn-lg">Analyze Data</button>
-
-            </div>
-            <div className="form-group col-md-3"></div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+            <button type = "button" onClick={() => this.props.showLightbox(true)} className ="btn btn-danger navbar-btn">Analyze Data</button>
+            </li>
           </ul>
-        </div>
-
-        <Lightbox openTabfromParent={this.openTab} />
-
-        <div id="data" className="tabcontent">
-          <Cultivar dim={this.state.tabdim} openTabfromParent={this.openTab} />
-
-        </div>
-
-        <div id="pedigree" className="tabcontent">
-          <Pedigree dim={this.state.tabdim} />
-
-        </div>
-
-        <div id="pca" className="tabcontent">
-          <Pca dim={this.state.tabdim} />
-        </div>
-
-        <div id="hc" className="tabcontent">
-
-          <HCluster dim={this.state.tabdim} />
-        </div>
-
+        </nav>
       </div>
+      <Lightbox openTabfromParent={this.openTab} />
+      <div id="data" className={cx(styles.tabcontent , "tabcontent")}>
+        <Cultivar dim={this.state.tabdim} openTabfromParent={this.openTab} />
+      </div>
+     <div id="pedigree" className={cx(styles.tabcontent,  "tabcontent")}>
+        <Pedigree dim={this.state.tabdim} />
+      </div>   
+      <div id="pca" className={cx(styles.tabcontent,  "tabcontent")}>
+        <Pca dim={this.state.tabdim} />
+      </div>
+      <div id="hc" className={cx(styles.tabcontent,  "tabcontent")}> 
+        <HCluster dim={this.state.tabdim} />
+      </div> 
+    </div>
     );
   }
 

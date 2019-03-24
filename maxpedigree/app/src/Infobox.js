@@ -1,7 +1,8 @@
 import React from 'react';
-import './Infobox.css';
+import styles from './Infobox.css';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 
 class InfoBox extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class InfoBox extends React.Component {
             return null;
         }
         return (
-            <ul className="list">
+            <ul className={styles.list}>
                 <li>
                     ID : {node.cultivarId}
                 </li>
@@ -54,8 +55,8 @@ class InfoBox extends React.Component {
 
     render() {
 
-        return <div className="InfoBox" style={this.props.dim}>
-            <h2> Cultivar Info</h2>
+        return <div className={styles.infoBox} style={this.props.dim}>
+            <h3> Cultivar Info</h3>
             <div id="cultivarInfo">
                 {this.renderswitch()}
             </div>

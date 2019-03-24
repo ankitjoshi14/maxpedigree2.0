@@ -9,20 +9,23 @@
     background-color: rgba(0,0,0,0.5); /*dim the background*/
   }
 
-  .uploadform{
+.uploadform{
     margin: 10px 10px 10px 10px;
 }
 
-
-  textarea { 
+.textarea { 
     resize:none;
-   align-self: center 
+   align-self: center; 
+  }
+
+.hidden {
+    display: none;
   }
 
   /* just some content with arbitrary styles for explanation purposes */
 .moddal {
     width: 350px;
-    height: 450px;
+    height: 550px;
     position: absolute;
     top: 20%; 
     left: 50%;

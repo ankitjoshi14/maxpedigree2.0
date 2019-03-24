@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { showLightbox, pca, hcluster, downloadFile } from "./pedigreeaction";
-import "./lightbox.css";
+import styles from "./lightbox.css";
+ 
+import cx from 'classnames';
 
 
 
@@ -111,36 +113,35 @@ class Lightbox extends React.Component {
     render() {
         console.log("render lightbox ", this.props.showit)
         return (
-            <div><div id="target" className={this.props.showit ? 'overlay' : 'hidden  overlay'} ></div>
-                <div className={this.props.showit ? 'moddal' : 'hidden moddal'}>
-                    <h2>
+            <div><div id="target" className={this.props.showit ? styles.overlay : cx(styles.hidden , styles.overlay)} ></div>
+                <div className={this.props.showit ? styles.moddal : cx(styles.hidden , styles.moddal)}>
+                    <h3>
                         ANALYZE
-                    </h2>
-                     <div>                    <form className="uploadform">
+                    </h3>
+                     <div>                    <form className={styles.uploadform}>
                      <div className="form-row">
                         <div className="form-group">
-                        <label for="comment">Selected Cultivars:</label>
-                            <textarea className="form-control" rows="10" id="comment" onChange={this.handleChange} value={this.state.value} ></textarea>
+                        <label htmlFor="comment">Selected Cultivars:</label>
+                            <textarea className={cx("form-control",styles.textarea)} rows="10" id="comment" onChange={this.handleChange} value={this.state.value} ></textarea>
                         </div>
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-12">
-
-                                <button type="button" className="btn btn-primary btn-block .btn-lg " onClick={(e) => this.onsubmit(e, "pca")} >PCA</button>
+                                <button type="button" className="btn btn-outline-primary btn-block btn-lg" onClick={(e) => this.onsubmit(e, "pca")} >PCA</button>
                             </div>
                             <div className="form-group col-md-12">
-                                <button type="button" className="btn  btn-info btn-block .btn-lg " onClick={(e) => this.onsubmit(e, "hc")} >HCluster</button>
+                                <button type="button" className="btn btn-outline-info btn-block btn-lg" onClick={(e) => this.onsubmit(e, "hc")} >HCluster</button>
                             </div>
                         </div>
                      
                         <div className="form-row">
                             <div className="form-group col-md-6" >
-                                <button type="button" className="btn btn-primary btn-block" onClick={() => this.refresh()}>
+                                <button type="button" className="btn btn-outline-primary btn-block" onClick={() => this.refresh()}>
                                     <span className="glyphicon glyphicon-refresh"></span> Refresh</button>
 
                             </div>
                             <div className=" form-group col-md-6" >
-                                <button type="button" className="btn btn-block btn-danger" onClick={() => this.props.show(false)}>cancel</button>
+                                <button type="button" className="btn btn-block btn-outline-danger" onClick={() => this.props.show(false)}>cancel</button>
                             </div>
                         </div>
                     </form>

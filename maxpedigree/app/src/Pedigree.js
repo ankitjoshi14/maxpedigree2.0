@@ -3,10 +3,12 @@ import './HCluster.css';
 import * as d3 from "d3v4";
 import InfoBox from './Infobox';
 import Attributebox from './AttributeBox';
-import round from "math-round";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectednodePedigree } from "./pedigreeaction";
+import styles from "./pedigree.css";
+import globalStyles from 'bootstrap/dist/css/bootstrap.min.css'
+import cx from 'classnames';
 //import { pedigreeData } from "./data";
 
 class Pedigree extends React.Component {
@@ -306,7 +308,7 @@ class Pedigree extends React.Component {
                     y: source.y0
                 }
                 return diagonal(o, o)
-            }).style("stroke", function (d) { return legendselection(d); }).style('stroke-width', "5px").style("opacity", 0.9);
+            }).style("stroke", function (d) { return legendselection(d); }).style('stroke-width', "5px").style("opacity", 0.9).style("fill","none");
 
         // UPDATE
         let linkUpdate = linkEnter.merge(link);
@@ -424,10 +426,10 @@ class Pedigree extends React.Component {
     render() {
         const dim = this.calculateDim();
         return <div>
-            <div className="vizSection" style={dim.vizdim} >
+            <div className={styles.vizSection} style={dim.vizdim} >
                 <svg ref="anchor" />
             </div>
-            <div className="infoSection" style={dim.infodim}>
+            <div className={styles.infoSection} style={dim.infodim}>
                 <InfoBox tab={this.state.name} dim={dim.infobox} />
                 <div style={dim.divseperater} />
                 <Attributebox tab={this.state.name} dim={dim.attributebox} />

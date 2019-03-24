@@ -40,11 +40,13 @@ import org.rosuda.REngine.RList;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import restapi.viewmodel.*;
 import restapi.model.*;
 
+@Service
 public class CultivarMetaDataService {
 	private Connection conn;
 	private REngine eng;

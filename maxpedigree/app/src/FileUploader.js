@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { uploadfile } from "./pedigreeaction";
-import "./Fileuploader.css";
-
+import styles from "./Fileuploader.css";
+import cx from 'classnames';
 
 
 class FileUploader extends React.Component {
@@ -154,38 +154,38 @@ class FileUploader extends React.Component {
 
             <div>
 
-                <button type="button" className="btn btn-primary Left searchbarbutton" onClick={this.show} >Import Data</button>
-                <div className={this.state.show ? 'overlayer' : 'hidden  overlayer'} ></div>
-                <div className={this.state.show ? 'modaluploader' : 'hidden modaluploader'}>
+                <button type="button" className={cx("btn", "btn-outline-primary" , styles.searchbarbutton)} onClick={this.show} >Import Data</button>
+                <div className={this.state.show ? styles.overlayer : cx(styles.hidden, styles.overlayer)} ></div>
+                <div className={this.state.show ? styles.modaluploader : cx( styles.hidden , styles.modaluploader)}>
                    
-                <h2>
+                <h3>
                         IMPORT
-                    </h2>
-                    <form className="uploadform">
+                    </h3>
+                    <form className={styles.uploadform}>
                         <div className="form-group">
-                            <label class="form-check-label" for="exampleRadios2">Upload</label>
+                            <label className="form-check-label" htmlFor="exampleRadios2">Upload</label>
                             <div><input type="file" name="" id="" onChange={this.handleselectedFile} /></div>
                         </div>
                         <div className="form-group">
-                            <label class="form-check-label" for="exampleRadios2">  File Type</label>
+                            <label className="form-check-label" htmlFor="exampleRadios2">  File Type</label>
                             <div className="form-row">
-                                <div className="form-group col-md-5" >
+                                <div className="form-group col-md-5">
                                     <input onClick={this.handleFileType} type="radio" name="optradio" value="snp" />SNP
 
                             </div>
-                                <div className=" form-group col-md-7" >
+                                <div className="form-group col-md-7" >
                                     <input onClick={this.handleFileType} type="radio" name="optradio" value="cultivar" />Cultivar
                             </div>
                             </div>
                         </div>
                         <div className="form-group">
-                            <label class="form-check-label" for="exampleRadios2">Upload Type</label>
+                            <label className="form-check-label" htmlFor="exampleRadios2">Upload Type</label>
                             <div className="form-row">
-                                <div className="form-group col-md-5" >
+                                <div className="form-group col-md-5">
                                     <input onClick={this.handleUploadType} type="radio" name="uradio" value="false" />Validate
 
                             </div>
-                                <div className=" form-group col-md-7" >
+                                <div className="form-group col-md-7">
                                     <input onClick={this.handleUploadType} type="radio" name="uradio" value="true" />Validate and Upload
                             </div>
                             </div>
@@ -197,20 +197,20 @@ class FileUploader extends React.Component {
                             <div className="form-row">
                                 <div className="form-group col-md-6" >
                                     <button type="button" className="btn btn-primary btn-block" onClick={this.handleUpload} >upload</button>
-                                </div><div className=" form-group col-md-6" >
+                                </div><div className="form-group col-md-6">
                                     <button type="button" className="btn btn-danger btn-block" onClick={this.cancel}>cancel</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-check-label" for="exampleRadios2">Upload Status:</label>
+                        <div className="form-group">
+                            <label className="form-check-label" htmlFor="exampleRadios2">Upload Status:</label>
                             <div className="form-row">
-                                <div className="form-group col-md-5" >
+                                <div className="form-group col-md-5">
                                 Validation : <span className={validationClass}>{validation}</span>
 
                                 </div>
-                                <div className=" form-group col-md-7" >
+                                <div className="form-group col-md-7">
                                     Uploaded : <span className={uploadedClass}>{uploaded}</span> 
                                 </div>
                             </div>

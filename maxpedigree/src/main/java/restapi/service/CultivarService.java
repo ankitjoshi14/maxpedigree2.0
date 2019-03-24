@@ -2,10 +2,13 @@ package restapi.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,10 +17,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Matcher;
 
 import javax.xml.ws.Response;
 
 import org.apache.commons.collections.iterators.ArrayListIterator;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -41,7 +47,12 @@ import org.rosuda.REngine.REngine;
 import org.rosuda.REngine.REngineException;
 import org.rosuda.REngine.REngineStdOutput;
 import org.rosuda.REngine.RList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import restapi.model.*;
 import restapi.viewmodel.*;
@@ -63,15 +74,15 @@ public class CultivarService {
 	private ValidationService validationService;
 	
 	
-
-	public CultivarService() {
+    @Autowired
+	public CultivarService(ValidationService validationService) {
           System.out.println("service bean");
 		try {
 			conn = DBConnection.getConnection();
 			sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
 			eng = REngine.engineForClass("org.rosuda.REngine.JRI.JRIEngine", new String[] {}, new REngineStdOutput(),
 					false);
-		   this.validationService = new ValidationService();
+		   this.validationService = validationService;
 
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -114,6 +125,26 @@ public class CultivarService {
 		return rList;
 	}
 
+	
+	private String getFile(String fileName){
+		
+		  String result = "";
+			URL obj = null;
+			String extra = null;
+		  ClassLoader classLoader = getClass().getClassLoader();
+		  try {
+			result = IOUtils.toString(classLoader.getResource(fileName));
+			 obj = classLoader.getResource(fileName);
+			 result = new File(obj.getFile()).getAbsolutePath().replace("\\", Matcher.quoteReplacement("\\\\"));
+			 extra = new File(obj.getFile()).getAbsolutePath();
+			 
+		  } catch (IOException e) {
+			e.printStackTrace();
+		  }
+			
+		  return result;
+			
+	  }
 	private double[][] pca(RList glist, RList alleles) throws REXPMismatchException, ClassNotFoundException,
 			NoSuchMethodException, IllegalAccessException, InvocationTargetException, REngineException {
 		// REngine eng =
@@ -125,8 +156,10 @@ public class CultivarService {
 		// l.put("b", new REXPString("CD-L"));
 		eng.assign("data", new REXPList(glist));
 		eng.assign("alleles", new REXPList(alleles));
-		eng.parseAndEval("source('D:\\\\data-genetics\\\\clint\\\\PCA.R')");
-
+		//eng.parseAndEval("source('D:\\\\data-genetics\\\\clint\\\\PCA.R')");
+		String path = "D:\\\\maxpedigree2.0\\\\.metadata\\\\.plugins\\\\org.eclipse.wst.server.core\\\\tmp0\\\\wtpwebapps\\\\maxpedigree\\\\WEB-INF\\\\classes\\\\PCA.R";
+		path = "source('" + getFile("PCA.R") + "')";
+		eng.parseAndEval(path);
 		REXP pca2 = eng.parseAndEval("pca2(data,alleles)");
 		// REXP pca = eng.parseAndEval("pca(data,alleles)");
 		// System.out.println("pull all three back to Java");
@@ -1320,6 +1353,119 @@ public class CultivarService {
 
 		return isValid;
 
+	}
+	
+	
+	public String CreateFile(ArrayList<String> ids,String fileType) {
+
+		String fileName = null;
+		System.out.println("id recived" + ids.get(0) + fileType);
+
+		FileInputStream st = null;
+		FileWriter wr = null;
+		File file = null;
+		FileSystemResource fileres = null;
+		HttpHeaders responseHeaders = null;
+		ArrayList<Cultivar> cultivarlist = null;
+		ArrayList<Snp> snplist = null;
+		// Or should I use outputstream here?
+		try {
+			file = File.createTempFile("data", ".csv");
+			wr = new FileWriter(file);
+			StringBuilder sb = new StringBuilder();
+            sb.append("Cultivar_ID,Cultivar_Name,Subcollection,Country,Year,MG,Stem_Termination").append("\n");
+            
+			if (fileType.equals("cultivar")) {
+				wr.write(sb.toString());
+	            wr.flush();
+				cultivarlist = this.getallCultivars(ids);
+				for (Cultivar cultivar : cultivarlist) {
+					sb = new StringBuilder();
+					sb.append(cultivar.getCultivarId()  
+					+ "," + (cultivar.getCultivarName() !=null ? cultivar.getCultivarName() : "")
+					+ "," + (cultivar.getSubcollection() != null? cultivar.getSubcollection().getValue(): "")
+					+ "," + (cultivar.getCountry() !=null ? cultivar.getCountry().getValue() : "")
+					+ "," + cultivar.getYear()
+					+ "," + (cultivar.getMaturityGroup() !=null ? cultivar.getMaturityGroup().getValue() : "")
+					+ "," + (cultivar.getStemTermination() !=null ? cultivar.getStemTermination().getValue() : "")).append("\n");
+					wr.write(sb.toString());
+					wr.flush();
+				}
+
+			} else {
+				snplist = this.getallSNP(ids);
+				HashMap<Integer, String> snpmap = this.snpMetaDataService.getSnpNameMap();
+				HashMap<String, String> snpNameChrom = this.snpMetaDataService.getSnpNameChromMap();
+				HashMap<String, String> snpNamePos = this.snpMetaDataService.getSnpNamePosMap();
+				int rowsCount = snpmap.size() + 1;
+				int colsCount = snplist.size() + 3 ;
+				String[][] matrix = new String[rowsCount][colsCount];
+
+				matrix[0][0] = "CHROM";
+				matrix[0][1] = "POS";
+				matrix [0][2] = "ID";
+
+				for (int col = 0; col < colsCount; col++) {
+					Snp snp = null;
+					String cultivarid= null;
+			
+					String[] snps = null;
+					if(col > 2){
+						 snp = snplist.get(col - 3);
+						cultivarid = snp.getId();
+						snps = snp.getSnp().split("");	
+					}
+					
+					for (int row = 0; row < rowsCount; row++) {
+                       
+						if (col == 0) {
+							
+							String chrom = snpNameChrom.get(snpmap.get(row));
+							matrix[row][col] = (row ==0 )? "CHROM" :  snpNameChrom.get(snpmap.get(row-1));
+							
+						} else if (col == 1) {
+							String pos = snpNamePos.get(snpmap.get(row));
+							matrix[row][col] = (row == 0) ?  "POS" : snpNamePos.get(snpmap.get(row-1));
+						} else if(col == 2){
+							String snpName = snpmap.get(row);
+							matrix[row][col] = (row == 0) ? "ID" : snpmap.get(row-1) ;
+						}else{
+							matrix[row][col] = (row == 0) ? cultivarid :  snps[row - 1]; 
+						}
+
+					}
+				}
+				
+				StringBuilder sb2 = null;
+				for(int i=0; i< matrix.length ; i++){
+					sb2 = new StringBuilder(matrix[0].length);
+					for (int j =0 ; j < matrix[0].length ; j++){
+						sb2.append(matrix[i][j]).append(",");
+					}
+					sb2.append("\n");
+					wr.write(sb2.toString());
+					wr.flush();
+				}
+				
+				
+			}
+
+			
+
+			wr.close();
+
+			// fileres = new
+			// FileSystemResource("D:\\\\data-genetics\\\\soysnp50K_wm82.a1_41417.txt");
+			fileres = new FileSystemResource(file);
+			fileName = FilenameUtils.removeExtension(fileres.getFilename());
+
+			st = new FileInputStream(file);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+
+		}
+		return fileName;
 	}
 }
 

@@ -4,11 +4,11 @@ import './index.css';
 import App from './App';
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import registerServiceWorker from './registerServiceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import thunk from "redux-thunk";
 
 let initialState = {
-  selectedCultivars: ["PI5485046","PI132215","PI132206"],
+  selectedCultivars: [],
   count: [],
   cultivarResponse: null,
   showLightbox: false,
@@ -130,4 +130,4 @@ let store = createStore(reducer, initialState, applyMiddleware(thunk));
 let provider = <Provider store={store}><App /></Provider>;
 
 ReactDOM.render(provider, document.getElementById('root'));
-registerServiceWorker();
+

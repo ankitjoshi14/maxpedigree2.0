@@ -1,71 +1,48 @@
 package restapi.controller;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import javax.net.ssl.SSLEngineResult.Status;
-import javax.print.DocFlavor.URL;
-import javax.xml.ws.Response;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.REngineException;
-import org.springframework.web.bind.annotation.RestController;
-import restapi.service.*;
-import restapi.viewmodel.*;
-import restapi.model.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import restapi.model.Cultivar;
+import restapi.service.CultivarService;
+import restapi.viewmodel.CultivarForm;
+import restapi.viewmodel.CultivarResponse;
+import restapi.viewmodel.HClusterNode;
+import restapi.viewmodel.Pagination;
+import restapi.viewmodel.UploadResponse;
 
 @CrossOrigin
 @RestController
 public class IndexController {
 	private CultivarService service;
-	private SnpMetaDataService snpMetaDataService;
 
 	@Autowired
-	public IndexController(CultivarService cultivarService, SnpMetaDataService snpMetaDataService) {
+	public IndexController(CultivarService cultivarService) {
 		this.service = cultivarService;
-		this.snpMetaDataService = snpMetaDataService;
+
 		System.out.println("parameterized index controller");
 	}
 
@@ -202,117 +179,9 @@ public class IndexController {
 	}
 
 	@PostMapping("/createfile")
-	public String CreateFile(@RequestParam(name = "ids") ArrayList<String> ids,
+	public String createfile(@RequestParam(name = "ids") ArrayList<String> ids,
 			@RequestParam(name = "filetype") String fileType) {
-
-		String fileName = null;
-		System.out.println("id recived" + ids.get(0) + fileType);
-
-		FileInputStream st = null;
-		FileWriter wr = null;
-		File file = null;
-		FileSystemResource fileres = null;
-		HttpHeaders responseHeaders = null;
-		ArrayList<Cultivar> cultivarlist = null;
-		ArrayList<Snp> snplist = null;
-		// Or should I use outputstream here?
-		try {
-			file = File.createTempFile("data", ".csv");
-			wr = new FileWriter(file);
-			StringBuilder sb = new StringBuilder();
-            sb.append("Cultivar_ID,Cultivar_Name,Subcollection,Country,Year,MG,Stem_Termination").append("\n");
-            
-			if (fileType.equals("cultivar")) {
-				wr.write(sb.toString());
-	            wr.flush();
-				cultivarlist = service.getallCultivars(ids);
-				for (Cultivar cultivar : cultivarlist) {
-					sb = new StringBuilder();
-					sb.append(cultivar.getCultivarId()  
-					+ "," + (cultivar.getCultivarName() !=null ? cultivar.getCultivarName() : "")
-					+ "," + (cultivar.getSubcollection() != null? cultivar.getSubcollection().getValue(): "")
-					+ "," + (cultivar.getCountry() !=null ? cultivar.getCountry().getValue() : "")
-					+ "," + cultivar.getYear()
-					+ "," + (cultivar.getMaturityGroup() !=null ? cultivar.getMaturityGroup().getValue() : "")
-					+ "," + (cultivar.getStemTermination() !=null ? cultivar.getStemTermination().getValue() : "")).append("\n");
-					wr.write(sb.toString());
-					wr.flush();
-				}
-
-			} else {
-				snplist = service.getallSNP(ids);
-				HashMap<Integer, String> snpmap = this.snpMetaDataService.getSnpNameMap();
-				HashMap<String, String> snpNameChrom = this.snpMetaDataService.getSnpNameChromMap();
-				HashMap<String, String> snpNamePos = this.snpMetaDataService.getSnpNamePosMap();
-				int rowsCount = snpmap.size() + 1;
-				int colsCount = snplist.size() + 3 ;
-				String[][] matrix = new String[rowsCount][colsCount];
-
-				matrix[0][0] = "CHROM";
-				matrix[0][1] = "POS";
-				matrix [0][2] = "ID";
-
-				for (int col = 0; col < colsCount; col++) {
-					Snp snp = null;
-					String cultivarid= null;
-			
-					String[] snps = null;
-					if(col > 2){
-						 snp = snplist.get(col - 3);
-						cultivarid = snp.getId();
-						snps = snp.getSnp().split("");	
-					}
-					
-					for (int row = 0; row < rowsCount; row++) {
-                       
-						if (col == 0) {
-							
-							String chrom = snpNameChrom.get(snpmap.get(row));
-							matrix[row][col] = (row ==0 )? "CHROM" :  snpNameChrom.get(snpmap.get(row-1));
-							
-						} else if (col == 1) {
-							String pos = snpNamePos.get(snpmap.get(row));
-							matrix[row][col] = (row == 0) ?  "POS" : snpNamePos.get(snpmap.get(row-1));
-						} else if(col == 2){
-							String snpName = snpmap.get(row);
-							matrix[row][col] = (row == 0) ? "ID" : snpmap.get(row-1) ;
-						}else{
-							matrix[row][col] = (row == 0) ? cultivarid :  snps[row - 1]; 
-						}
-
-					}
-				}
-				
-				StringBuilder sb2 = null;
-				for(int i=0; i< matrix.length ; i++){
-					sb2 = new StringBuilder(matrix[0].length);
-					for (int j =0 ; j < matrix[0].length ; j++){
-						sb2.append(matrix[i][j]).append(",");
-					}
-					sb2.append("\n");
-					wr.write(sb2.toString());
-					wr.flush();
-				}
-				
-				
-			}
-
-			
-
-			wr.close();
-
-			// fileres = new
-			// FileSystemResource("D:\\\\data-genetics\\\\soysnp50K_wm82.a1_41417.txt");
-			fileres = new FileSystemResource(file);
-			fileName = FilenameUtils.removeExtension(fileres.getFilename());
-
-			st = new FileInputStream(file);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println(e);
-
-		}
-		return fileName;
+		return this.service.CreateFile(ids, fileType);
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })

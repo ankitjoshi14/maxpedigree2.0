@@ -4,8 +4,8 @@ import React from 'react';
 import { getpedigreedata } from "./pedigreeaction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import "./Pagination.css";
-
+import styles from "./Pagination.css";
+import cx from 'classnames';
 //const propTypes = {
 //  items: React.PropTypes.array.isRequired,
 //  onChangePage: React.PropTypes.func.isRequired,
@@ -149,24 +149,24 @@ class Pagination extends React.Component {
         }
 
         return (
-            <div className="paginationDiv" style={dim}>
-                <ul className="pagination customPagination">
-                    <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(1)}>First</a>
+            <div className={styles.paginationDiv} style={dim}>
+                <ul className={cx( "pagination" , "justify-content-center")}>
+                    <li className={pager.currentPage === 1 ? "disabled page-item" : "page-item"}>
+                        <a className="page-link" onClick={() => this.setPage(1)}>First</a>
                     </li>
-                    <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
+                    <li className={pager.currentPage === 1 ? "disabled page-item" : "page-item"}>
+                        <a className="page-link" onClick={() => this.setPage(pager.currentPage - 1)}>Previous</a>
                     </li>
                     {pager.pages.map((page, index) =>
-                        <li key={index} className={pager.currentPage === page ? 'active' : ''}>
-                            <a onClick={() => this.setPage(page)}>{page}</a>
+                        <li key={index} className={pager.currentPage === page ? "active page-item" : "page-item"}>
+                            <a  className="page-link" onClick={() => this.setPage(page)}>{page}</a>
                         </li>
                     )}
-                    <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
+                    <li className={pager.currentPage === pager.totalPages ? "disabled page-item" : "page-item"}>
+                        <a className="page-link" onClick={() => this.setPage(pager.currentPage + 1)}>Next</a>
                     </li>
-                    <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
+                    <li className={pager.currentPage === pager.totalPages ? "disabled page-item" : "page-item"}>
+                        <a  className="page-link" onClick={() => this.setPage(pager.totalPages)}>Last</a>
                     </li>
                 </ul>
             </div >

@@ -1,11 +1,11 @@
-.AttributeBox{
+.attributeBox{
     -moz-box-shadow: 0 0 5px #888;
     -webkit-box-shadow: 0 0 5px#888;
     box-shadow: 0 0 5px #888;
     border-radius: 15px ;
 }
 
-h2{
+h3{
     border-bottom-style: solid;
     border-radius: 15px 15px 0px 0px;
     text-align : center;
@@ -16,7 +16,7 @@ h2{
     
 }
 
-#attributes{
+.attributes{
     overflow-y: scroll;
     height : 200px ;
 }

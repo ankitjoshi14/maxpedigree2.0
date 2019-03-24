@@ -1,16 +1,21 @@
 package restapi.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import restapi.model.*;
 
+@Service
 public class ValidationService {
 
 	private CultivarMetaDataService cultivarMetaDataService;
 	private SnpMetaDataService snpMetaDataService;
 
-	public ValidationService() {
+	@Autowired
+	public ValidationService(CultivarMetaDataService cultivarMetaDataService , SnpMetaDataService snpMetaDataService) {
 		super();
-		this.cultivarMetaDataService = new CultivarMetaDataService();
-		this.snpMetaDataService = new SnpMetaDataService();
+		this.cultivarMetaDataService = cultivarMetaDataService;
+		this.snpMetaDataService = snpMetaDataService;
 	}
 
 	public CultivarMetaDataService getCultivarMetaDataService() {

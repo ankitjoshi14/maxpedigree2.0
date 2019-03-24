@@ -4,6 +4,7 @@ import Searchbar from "./Searchbar";
 import saveAs from 'file-saver';
 
 
+  
 
 export const uploadfile = (selectedFile, FileType, uploadType) => {
 
@@ -101,7 +102,7 @@ export const getpedigreedata = (seachCriteria) => {
 
 
     return (dispatch) => {
-        axios.post('http://localhost:8085//maxpedigree/cultivars', postData, axiosConfig)
+        axios.post('http://localhost:8085/maxpedigree/cultivars', postData, axiosConfig)
             .then((res) => {
                 console.log("inside")
                 console.log(res);

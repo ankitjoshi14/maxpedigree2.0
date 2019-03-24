@@ -2,7 +2,7 @@
  * A simple React component
  */
 import React from 'react';
-import './HCluster.css';
+import styles from'./HCluster.css';
 import * as d3 from "d3v4";
 import InfoBox from './Infobox';
 import Attributebox from './AttributeBox';
@@ -114,7 +114,7 @@ class HCluster extends React.Component {
                 return "M" + d.y + "," + d.x
                     + "L" + (d.parent.y) + "," + (d.x)
                     + " " + (d.parent.y) + "," + d.parent.x;
-            });
+            }).style('stroke-width', "2px").style("opacity", 0.9).style("fill","none").style("stroke", "#555");
 
 
         let nodes = points_g
@@ -224,10 +224,10 @@ class HCluster extends React.Component {
     render() {
         const dim = this.calculateDim();
         return (<div>
-            <div className="vizSection" style={dim.vizdim} >
+            <div className={styles.vizSection} style={dim.vizdim} >
                 <svg ref="anchor" />
             </div>
-            <div className="infoSection" style={dim.infodim}>
+            <div className={styles.infoSection} style={dim.infodim}>
                 <InfoBox tab={this.state.name} dim={dim.infobox} />
                 <div style={dim.divseperater}/>
                 <Attributebox tab={this.state.name} dim={dim.attributebox} />

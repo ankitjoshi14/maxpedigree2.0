@@ -4,6 +4,10 @@
     margin-top: 25px
 }
 
+.customform label{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
 
 .show{
     display: inline

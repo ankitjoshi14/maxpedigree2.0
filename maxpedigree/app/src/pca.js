@@ -1,8 +1,7 @@
 import React from 'react';
-import './HCluster.css';
+import styles from'./HCluster.css';
 import './pca.css';
 import * as d3 from "d3v4";
-import round from "math-round";
 import InfoBox from './Infobox';
 import Attributebox from './AttributeBox';
 import { connect } from "react-redux";
@@ -290,10 +289,10 @@ class Pca extends React.Component {
     render() {
         const dim = this.calculateDim();
         return <div>
-            <div className="vizSection" style={dim.vizdim} >
+            <div className={styles.vizSection} style={dim.vizdim} >
                 <svg ref="anchor" />
             </div>
-            <div className="infoSection" style={dim.infodim}>
+            <div className={styles.infoSection} style={dim.infodim}>
                 <InfoBox tab={this.state.name} dim={dim.infobox} />
                 <div style={dim.divseperater}/>
                 <Attributebox tab={this.state.name} dim={dim.attributebox} />

@@ -1,9 +1,9 @@
 import React from 'react';
-import './AttributeBox.css';
+import styles from'./AttributeBox.css';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { selectedAttributePC,selectedAttributePedigree } from "./pedigreeaction";
-
+import cx from 'classnames';
 class AttributeBox extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +23,7 @@ class AttributeBox extends React.Component {
             case "pedigree":
             return(
                 
-                <div id="attributes" className="container" style={dim}>
+                <div className={cx("container", styles.attributes)} style={dim}>
 
                     {this.state.attributes.map((attribute) =>
                        
@@ -39,7 +39,7 @@ class AttributeBox extends React.Component {
             case "pca":
             return(
                 
-                <div id="attributes" className="container" style={dim}>
+                <div className={cx("container", styles.attributes)} style={dim}>
 
                     {this.state.attributes.map((attribute) =>
                        
@@ -69,8 +69,8 @@ class AttributeBox extends React.Component {
     render() {
        
         return (
-            <div className="AttributeBox" >
-            <h2> Attributes Selection</h2>
+            <div className={styles.attributeBox} >
+            <h3> Attributes Selection</h3>
                 {this.renderswitch()}
             </div>
         )
