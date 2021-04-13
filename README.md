@@ -8,10 +8,10 @@
 <p  align="center"><img src="screenshots/system_arch.jpg"/></p>
 <p align="center"><strong><em>Features &amp; User Guide</em></strong></p>
 <p>MaxPedigree bundles multiple features in one platform. Data analysis and visualization are at its core. Besides those, there are some addon features. Below is the comprehensive list of all the features with details and usage.</p>
-<p><u>Data Selection Tab:</u></p>
+<p align="left"><strong><em>Data Selection Tab:</em></strong></p>
 <p>This feature let the user lookup Cultivar database using the interactive search bar in a nice and easy to navigate tabular format. Pagination is also provided to let the user browse through hundreds of records with no Hassle. To refine the search, the user can make use of the search bar. Each data row is provided with a checkbox to let the user select the cultivar for data analysis.</p>
 <img src="screenshots/searchbar.gif"/>
-<p><u> Search Bar:</u></p>
+<p align="left"><strong><em> Search Bar:</em></strong></p>
 <p>Cultivar data can have thousands of records. The user can take help of search bar to refine the search results. MaxPedigree provides four search criteria for this purpose.</p>
 <p>Valid input values for each criterion.</p>
 <ul>
@@ -24,7 +24,7 @@
 <p><u>Attribute selection and color tracing:</u></p>
 <p>This feature let user color nodes in PCA and edges in the pedigree tree based on the selected attribute. This feature helps the user to color trace selected attribute in the pedigree tree and gives extra information about nodes.</p>
 <p>To color, select desired attribute from attribute box at the right bottom of the screen.</p>
-<p><u>Pedigree Tree:</u></p>
+<p align="left"><strong><em>Pedigree Tree:</em></strong></p>
 <p>This feature will help the user to visualize the ancestry tree of a cultivar. Tree edges can be colored based on selected trait from attribute box.</p>
 <img src="screenshots/pedigree.gif"/>
 <p> To use this feature, follow the below steps:</p>
@@ -35,7 +35,7 @@
 <li>To color trace a trait, select it from attribute selection box.</li>
 </ul>
 <p>&nbsp;</p>
-<p><u>Principal Component analysis (PCA):</u></p>
+<p align="left"><strong><em>Principal Component analysis (PCA):</em></strong></p>
 <p>This feature will let the user do a principal component analysis of selected cultivars. The nodes can be colored based on the selected attribute. There is also an add-on feature for highlighting selected cultivar. The user can toggle the size of a node by clicking on it. This feature let user highlight specific node. To check out the details of each node, the user can hover over that node. The user can also zoom in, zoom out and drag the generated datapoints.</p>
 <img src="screenshots/pca.gif"/>
 <p>Zooming and Dragging feature</p>
