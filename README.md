@@ -8,6 +8,15 @@
 <p  align="center"><img src="screenshots/system_arch.jpg"/></p>
 <p align="center"><strong><em>Features &amp; User Guide</em></strong></p>
 <p>MaxPedigree bundles multiple features in one platform. Data analysis and visualization are at its core. Besides those, there are some addon features. Below is the comprehensive list of all the features with details and usage.</p>
+<ul>
+  <li>Data Selection Tab</li>
+  <li>Search Bar</li>
+  <li>Pedigree Tree</li>
+  <li>Principal Component analysis (PCA)</li>
+  <li>Hierarchical Clustering</li>
+  <li>Data Import</li>
+  <li>Data Export</li>
+</ul>
 <p align="left"><strong><em>Data Selection Tab:</em></strong></p>
 <p>This feature let the user lookup Cultivar database using the interactive search bar in a nice and easy to navigate tabular format. Pagination is also provided to let the user browse through hundreds of records with no Hassle. To refine the search, the user can make use of the search bar. Each data row is provided with a checkbox to let the user select the cultivar for data analysis.</p>
 <img src="screenshots/searchbar.gif"/>
@@ -51,7 +60,7 @@
 <li>To change the colors of the node, selected the desired attribute from the attribute selection box.</li>
 </ul>
 <p>NOTE- Cultivars with no SNP information in the database will be ignored while performing PCA.</p>
-<p><u>Hierarchical Clustering:</u></p>
+<p align="left"><strong><em>Hierarchical Clustering:</em></strong></p>
 <p>This feature will let user generate Hierarchical Cluster for selected cultivars. This follows the same procedure same PCA. The user can zoom in, zoom out and drag the Hierarchical Cluster. </p>
 <img src="screenshots/hcluster.gif"/>
 <p>To perform Hierarchical Clustering, follow below steps:</p>
@@ -64,7 +73,7 @@
 </ul>
 <p>NOTE- Cultivars with no SNP information in the database will be ignored.</p>
 <p>&nbsp;</p>
-<p><u>SNP and physical information Validation:</u></p>
+<p align="left"><strong><em>SNP and physical information Validation:</em></strong></p>
 <p>MaxPedigree let user validate SNP and physical information. The user can validate up to 100 cultivars in a single upload. MaxPedigree accepts CSV format only. It also displays validation response message to let user correct incorrect information and reupload again. MaxPedigree can also validate a cultivar with missing SNPs. The user can also upload incomplete SNP information. For instance, sometimes a specific cultivar does not have SNP information for all 40,000 SNPs. A cultivar with lesser SNPs (&lt; 40,000) will also be validated. Uploaded SNPs can follow any sequence. </p>
 <img src="screenshots/validation.gif"/>
 <p>To validate SNP or physical information, follow below steps:</p>
@@ -76,12 +85,12 @@
 <li>Review the upload results.</li>
 </ul>
 <p>NOTE- Always use CSV file with correct headers. Download template file for hassle free upload. Validation of data stops at the first occurrence of incorrect cultivar information. For instance, if the uploaded file has an incorrect value in the first row itself then no further validation will occur, and validation failed response will be sent with correction hints in the upload results area.</p>
-<p><u>Data Import:</u></p>
+<p align="left"><strong><em>Data Import:</em></strong></p>
 <p>This feature follows the same procedure as Validation. MaxPedigree uploads data only if the information is correct for all the cultivars. For instance, If a user uploaded an SNP information file having 50 cultivars. Data will be persisted in the database only if all the 50 cultivars are validated successfully. Even if 49 cultivars are correct but 50<sup>th</sup> cultivar is uploaded with incorrect values, MaxPedigree will reject upload for all Cultivars.</p>
 <p>NOTE - One Important feature of Data Export for Cultivar Data is that it updates the data rows having Cultivar Id and create new ID (starting with &ldquo;Z00000&rdquo;) if Cultivar ID is empty.</p>
 <img src="screenshots/validation.gif"/>
 <p>&nbsp;</p>
-<p><u>Data Export:</u></p>
+<p align="left"><strong><em>Data Export:</em></strong></p>
 <p>This feature let user export the cultivar physical or SNP information in CSV format. The export feature can export up to 100 cultivar information.</p>
 <img src="screenshots/export.gif"/>
 <p> To export data, follow below steps:</p>
